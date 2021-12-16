@@ -1,15 +1,20 @@
+#ifndef     sig_h
+    #define sig_h
+template<typename _RET = void>
 class sig {
 private:
-    void(*onfunc)();
+    _RET(*onfunc)();
 public:
     sig() {}
-    sig(void(*func)()) {
+    sig(_RET(*func)()) {
         onfunc = func;
     }
-    void on(void(*func)()) {
+    void on(_RET(*func)()) {
         onfunc = func;
     }
-    void emit() {
-        onfunc();
+    _RET emit() {
+        return onfunc();
     }
 };
+
+#endif   // sig_h
